@@ -44,7 +44,7 @@ def call(Map pipelineparams){
 
     environment {
         APPLICATION_NAME = ${pipelineParams.appName}
-        #APPLICATION_NAME = "eureka"
+     // APPLICATION_NAME = "eureka"
         POM_VERSION = readMavenPom().getVersion()
         POM_PACKAGING = readMavenPom().getPackaging()
         DOCKER_HUB = "docker.io/dravikumar442277"
@@ -67,7 +67,7 @@ def call(Map pipelineparams){
         }
             steps {
                 script {
-                    docker.buildApp(appName)
+                    docker.buildApp("${env.APPLICATION_NAME}")
                 }
             } 
         }
