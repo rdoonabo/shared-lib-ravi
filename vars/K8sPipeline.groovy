@@ -58,6 +58,7 @@ def call(Map pipelineparams){
         stage ('Authencated to Google Cloud GKE') {
             steps {
                 echo "Excuitng in google cloud auth stage"
+                echo "testing"
                 script {
                    K8s.auth_login()
                 }
