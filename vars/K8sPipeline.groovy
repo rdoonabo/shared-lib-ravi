@@ -1,4 +1,4 @@
-import com.i27academy.K8s.k8s
+import com.i27academy.K8s.K8s
 
 def call(Map pipelineparams){
     K8s docker = new K8s(this)
