@@ -60,7 +60,7 @@ def call(Map pipelineparams){
                 echo "Excuitng in google cloud auth stage"
                 echo "testing"
                 script {
-                   K8s.auth_login()
+                   k8s.auth_login()
                 }
                 
             }
