@@ -183,6 +183,7 @@ def call(Map pipelineparams){
         }
     }
     }
+}
     // Define the dockerDeploy method outside the pipeline block
     def dockerDeploy(envDeploy, hostPort, contPort) {
         return {
@@ -242,4 +243,3 @@ def call(Map pipelineparams){
         }
     }
     
-}
