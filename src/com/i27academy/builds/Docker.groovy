@@ -6,9 +6,9 @@ class Docker {
         this.jenkins = jenkins
     }
 
-    def buildApp(){
+    def buildApp(appName){
         jenkins.sh """#!/bin/bash
-        echo "building the Eureka application"
+        echo "building the $appName  application"
         mvn clean package -DskipTests=true
         """
 
