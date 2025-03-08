@@ -67,6 +67,7 @@ def call(Map pipelineparams){
         }
             steps {
                 script {
+                    echo "APPLICATION_NAME: ${env.APPLICATION_NAME}"
                     docker.buildApp("${env.APPLICATION_NAME}")
                 }
             } 
