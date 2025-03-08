@@ -11,9 +11,8 @@ class K8s {
     echo "Enterting the Authencation method for GKE cluster login"
     gcloud config set account jenkins@final-devops-project-445009.iam.gserviceaccount.com
     gcloud compute instances list
-    echo "successfully donehhhh"
+    echo "successfully "
     """
    }
     
   }
-
