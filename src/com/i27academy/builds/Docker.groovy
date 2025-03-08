@@ -8,7 +8,7 @@ class Docker {
 
     def buildApp(appName){
         jenkins.sh """#!/bin/bash
-        echo "building the $appName  application"
+        echo "building the "${appName}"  application"
         mvn clean package -DskipTests=true
         """
 
