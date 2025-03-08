@@ -49,7 +49,7 @@ def call(Map pipelineparams){
         DOCKER_HUB = "docker.io/dravikumar442277"
         DOCKER_REPO = "eureka"
         DOCKER_CREDS = credentials('dravikumar442277_docker_creds')
-        SONAR_URL = "http://34.60.72.105//:9000/"
+        SONAR_URL = "http://34.60.72.105:9000/"
         SONAR_TOKENS = credentials('sonar_token')
     }
 
