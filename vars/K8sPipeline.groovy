@@ -1,7 +1,7 @@
 import com.i27academy.K8s.K8s
 
 def call(Map pipelineparams){
-    K8s docker = new K8s(this)
+    K8s k8s = new K8s(this)
     pipeline {
     agent {
         label 'k8s-slave'
