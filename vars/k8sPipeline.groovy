@@ -234,6 +234,8 @@ def call(Map pipelineparams){
         }
     }
     def imageValidation() {
+        Docker docker = new Docker(this)
+        K8s k8s = new K8s(this)
         return {
             println("Pulling the Docker image")
             try {
@@ -251,6 +253,8 @@ def call(Map pipelineparams){
     }
 
     def dockerBuildandPush() {
+        Docker docker = new Docker(this)
+        K8s k8s = new K8s(this)
         return {
             
             sh "cp ${workspace}/target/i27-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING} ./.cicd"
