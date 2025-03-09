@@ -12,6 +12,8 @@ class K8s {
     gcloud config set account jenkins@final-devops-project-445009.iam.gserviceaccount.com
     gcloud compute instances list
     echo "successfully "
+    kubectl get nodes
+    kubectl get pods
     """
    }
     
