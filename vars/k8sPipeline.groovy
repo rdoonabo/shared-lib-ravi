@@ -116,8 +116,8 @@ def call(Map pipelineparams){
             anyOf {
                     expression {
                             params.sonarScans == 'yes'
-                            params.buildOnly == 'yes'
-                            params.dockerPush == 'yes'
+                           // params.buildOnly == 'yes'
+                           // params.dockerPush == 'yes'
                             
                             
                         }
