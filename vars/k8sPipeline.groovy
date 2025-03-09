@@ -1,6 +1,8 @@
+import com.i27academy.builds.Docker
 import com.i27academy.k8s.K8s
 
 def call(Map pipelineparams){
+    Docker docker = new Docker(this)
     K8s k8s = new K8s(this)
     pipeline {
     agent {
@@ -165,7 +167,10 @@ def call(Map pipelineparams){
         steps {
             script {
                 imageValidation().call()
-                dockerDeploy ('dev','5761','8761').call()
+                k8s.auth_login("${env.GKE_DEV_NAME}", "${env.GKE_DEV_ZONE}", "${env.GKE_DEV_PROJECT}")
+                k8s.k8sdeploy()
+                echo "Dev GKE done successfully here"
+               #  dockerDeploy ('dev','5761','8761').call()
             }
         }
         }

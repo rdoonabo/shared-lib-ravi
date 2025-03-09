@@ -19,5 +19,13 @@ class K8s {
     echo "get kube config file successfully"
     """
    }
-    
+
+
+  def k8sdeploy() {
+    jenkins.sh """#!/bin/bash 
+    echo "Excuitng the K8s Deploy Method"
+    kubectl apply -f ./.cicd/k8s_dev.yaml
+    echo "deploy k8s-dev done successfully"
+    """
+  }  
   }
