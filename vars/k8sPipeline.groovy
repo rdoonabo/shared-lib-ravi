@@ -52,6 +52,10 @@ def call(Map pipelineparams){
         DOCKER_CREDS = credentials('dravikumar442277_docker_creds')
         SONAR_URL = "http://34.123.190.159:9000/"
         SONAR_TOKENS = credentials('sonar_token')
+        GKE_DEV_NAME = "cluster-1"
+        GKE_DEV_ZONE = "us-central1-c"
+        GKE_DEV_PROJECT = "final-devops-project-445009"
+        
     }
 
     stages {
@@ -60,7 +64,8 @@ def call(Map pipelineparams){
                 echo "Excuitng in google cloud auth stage"
                 echo "testing"
                 script {
-                   k8s.auth_login()
+                
+                   k8s.auth_login("${env.GKE_DEV_NAME}", "${env.GKE_DEV_ZONE}", "${env.GKE_DEV_PROJECT}")
                 }
                 
             }
