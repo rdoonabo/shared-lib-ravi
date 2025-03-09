@@ -243,7 +243,7 @@ def call(Map pipelineparams){
             catch (Exception) {
                 println("OOPS, Docker image with this tag is not available")
                 println("So, Building the app, creating the image and pushing to registry")
-                #buildApp().call()
+            //  buildApp().call()
                 docker.buildApp("${env.APPLICATION_NAME}")
                 dockerBuildandPush().call()
             }
