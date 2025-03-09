@@ -170,7 +170,7 @@ def call(Map pipelineparams){
                 k8s.auth_login("${env.GKE_DEV_NAME}", "${env.GKE_DEV_ZONE}", "${env.GKE_DEV_PROJECT}")
                 k8s.k8sdeploy()
                 echo "Dev GKE done successfully here"
-               #  dockerDeploy ('dev','5761','8761').call()
+            //  dockerDeploy ('dev','5761','8761').call()
             }
         }
         }
