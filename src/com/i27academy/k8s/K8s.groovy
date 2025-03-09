@@ -12,8 +12,11 @@ class K8s {
     gcloud config set account jenkins@final-devops-project-445009.iam.gserviceaccount.com
     gcloud compute instances list
     echo "successfully "
+    gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project final-devops-project-445009
+    
     kubectl get nodes
     kubectl get pods
+    echo "get kube config file successfully"
     """
    }
     
