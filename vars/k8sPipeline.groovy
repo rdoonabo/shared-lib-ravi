@@ -43,7 +43,7 @@ def call(Map pipelineparams){
                 description: "This will Deploy my app to Prod env"
             )
     }
-
+   // my env 
     environment {
         APPLICATION_NAME = "${pipelineparams.appName}"
      // APPLICATION_NAME = "eureka"
