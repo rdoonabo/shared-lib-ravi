@@ -57,7 +57,7 @@ def call(Map pipelineparams){
         GKE_DEV_NAME = "cluster-1"
         GKE_DEV_ZONE = "us-central1-c"
         GKE_DEV_PROJECT = "final-devops-project-445009"
-        DOCKER_IMAGE_TAG = sh(script: 'git log -1 --pretty=%h', returnStdout:true)
+        DOCKER_IMAGE_TAG = sh(script: 'git log -1 --pretty=%h', returnStdout:true).trim()
         K8S_DEV_FILE = "k8s_dev.yaml"
     }
 
