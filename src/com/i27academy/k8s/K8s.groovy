@@ -21,9 +21,10 @@ class K8s {
    }
 
 
-  def k8sdeploy() {
+  def k8sdeploy(docker_image) {
     jenkins.sh """#!/bin/bash 
     echo "Excuitng the K8s Deploy Method"
+    echo "Final tag is $docker_image"
     kubectl apply -f ./.cicd/k8s_dev.yaml
     echo "deploy k8s-dev done successfully"
     """
