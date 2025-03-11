@@ -170,7 +170,7 @@ def call(Map pipelineparams){
                 imageValidation().call()
                 def docker_image = "${env.DOCKER_HUB}/${env.DOCKER_REPO}:${env.DOCKER_IMAGE_TAG}"
                 k8s.auth_login("${env.GKE_DEV_NAME}", "${env.GKE_DEV_ZONE}", "${env.GKE_DEV_PROJECT}")
-                k8s.k8sdeploy()
+                k8s.k8sdeploy(docker_image)
                 echo "Dev GKE done successfully here"
             //  dockerDeploy ('dev','5761','8761').call()
             }
