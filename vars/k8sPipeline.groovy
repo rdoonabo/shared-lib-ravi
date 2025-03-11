@@ -133,7 +133,7 @@ def call(Map pipelineparams){
             sh """
             echo " Now started sonar code quality coverage stage now"
             mvn clean verify sonar:sonar \
-                -Dsonar.projectKey=127-eureka \
+                -Dsonar.projectKey=ravi-eureka \
                 -Dsonar.host.url=${env.SONAR_URL} \
                 -Dsonar.login=${env.SONAR_TOKENS}
             """
