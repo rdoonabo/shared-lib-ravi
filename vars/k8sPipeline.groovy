@@ -58,7 +58,7 @@ def call(Map pipelineparams){
         GKE_DEV_ZONE = "us-central1-c"
         GKE_DEV_PROJECT = "final-devops-project-445009"
         DOCKER_IMAGE_TAG = sh(script: 'git log -1 --pretty=%h', returnStdout:true)
-        
+        K8S_DEV_FILE = "k8s_dev.yaml"
     }
 
     stages {
@@ -170,7 +170,7 @@ def call(Map pipelineparams){
                 imageValidation().call()
                 def docker_image = "${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${env.DOCKER_IMAGE_TAG}"
                 k8s.auth_login("${env.GKE_DEV_NAME}", "${env.GKE_DEV_ZONE}", "${env.GKE_DEV_PROJECT}")
-                k8s.k8sdeploy(docker_image)
+                k8s.k8sdeploy("${env.K8S_DEV_FILE}", docker_image)
                 echo "Dev GKE done successfully here"
             //  dockerDeploy ('dev','5761','8761').call()
             }
