@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: i27-eureka-dev
+  name: {{ .Values.fullname }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas.default }}
   selector:
     matchLabels:
-      app: i27-eureka-dev
+      app: {{ .Values.name }}
   template:
     metadata:
       labels:
-        app: i27-eureka-dev
+        app: {{ .Values.name }}
     spec:
   #    imagePullSecrets:
   #    - name:  jfrog-docker-secret
       containers:
-      - name: i27-eureka-dev
-        image: DIT # Docker Image Tag, which will be replaces later by sharedlib
+      - name: {{ .Values.name }}
+        image: "{{ Values.image.name}}:{{ Values.image.tag }}"
 
         
