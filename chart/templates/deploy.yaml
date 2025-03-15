@@ -1,0 +1,22 @@
+# Create a Deployment file for eureka
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: i27-eureka-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: i27-eureka-dev
+  template:
+    metadata:
+      labels:
+        app: i27-eureka-dev
+    spec:
+  #    imagePullSecrets:
+  #    - name:  jfrog-docker-secret
+      containers:
+      - name: i27-eureka-dev
+        image: DIT # Docker Image Tag, which will be replaces later by sharedlib
+
+        
