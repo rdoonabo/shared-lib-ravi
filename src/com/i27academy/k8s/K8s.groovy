@@ -31,3 +31,25 @@ class K8s {
     """
   }  
   }
+
+  def k8sHelmChartDeploy(appName, env, helmChartPath) {
+   jenkins.sh """#!/bin/bash
+   
+   echo "*************** entering to Helm Repo ***************"
+   helm install ${appName}-${env}-chart -f ./.cicd/k8s/values_${env}.yaml  ${helmChartPath}
+   # helm install chartname -f valuefilepath chartpath
+   # helm upgrade chartname -f valuefilepath chartpath
+   """
+  }
+
+  def gitClone() {
+    jenkins.sh """#!/bin/bash
+   
+   echo "*************** gitclone my shared lib ***************"
+   git clone https://github.com/rdoonabo/shared-lib-ravi.git
+   ls -la
+   ls -la  shared-lib-ravi/chart
+   """
+
+  }
+
