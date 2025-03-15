@@ -52,13 +52,18 @@ def call(Map pipelineparams){
         DOCKER_HUB = "docker.io/dravikumar442277"
         DOCKER_REPO = "eureka"
         DOCKER_CREDS = credentials('dravikumar442277_docker_creds')
-        SONAR_URL = "http://34.171.128.142:9000/"
+        SONAR_URL = "http://34.136.98.157:9000/"
         SONAR_TOKENS = credentials('sonar_token')
         GKE_DEV_NAME = "cluster-1"
         GKE_DEV_ZONE = "us-central1-c"
         GKE_DEV_PROJECT = "final-devops-project-445009"
         DOCKER_IMAGE_TAG = sh(script: 'git log -1 --pretty=%h', returnStdout:true).trim()
         K8S_DEV_FILE = "k8s_dev.yaml"
+        K8S_TEST_FILE = "k8s_tst.yaml"
+        K8S_PROD_FILE = "k8s_prod.yaml"
+        DEV_NAMESPACE = "cart-dev-ns"
+        TEST_NAMESPACE = "cart-test-ns"
+        PROD_NAMESPACE = "cart-prd-ns"
     }
 
     stages {
@@ -128,7 +133,7 @@ def call(Map pipelineparams){
             sh """
             echo " Now started sonar code quality coverage stage now"
             mvn clean verify sonar:sonar \
-                -Dsonar.projectKey=127-eureka \
+                -Dsonar.projectKey=ravi-eureka \
                 -Dsonar.host.url=${env.SONAR_URL} \
                 -Dsonar.login=${env.SONAR_TOKENS}
             """
@@ -170,7 +175,7 @@ def call(Map pipelineparams){
                 imageValidation().call()
                 def docker_image = "${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${env.DOCKER_IMAGE_TAG}"
                 k8s.auth_login("${env.GKE_DEV_NAME}", "${env.GKE_DEV_ZONE}", "${env.GKE_DEV_PROJECT}")
-                k8s.k8sdeploy("${env.K8S_DEV_FILE}", docker_image)
+                k8s.k8sdeploy("${env.K8S_DEV_FILE}", docker_image, "${env.DEV_NAMESPACE}")
                 echo "Dev GKE done successfully here"
             //  dockerDeploy ('dev','5761','8761').call()
             }
@@ -187,7 +192,11 @@ def call(Map pipelineparams){
         steps {
         script {
             imageValidation().call()
-            dockerDeploy ('test','6761','8761').call()
+            def docker_image = "${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${env.DOCKER_IMAGE_TAG}"
+            k8s.auth_login("${env.GKE_DEV_NAME}", "${env.GKE_DEV_ZONE}", "${env.GKE_DEV_PROJECT}")
+            k8s.k8sdeploy("${env.K8S_DEV_FILE}", docker_image, "${env.TEST_NAMESPACE}")
+            echo "Dev GKE done successfully in Test"
+            // dockerDeploy ('test','6761','8761').call()
         }
         }
         }
@@ -202,7 +211,12 @@ def call(Map pipelineparams){
         steps {
         script {
             imageValidation().call()
-            dockerDeploy ('prod','7761','8761').call()
+            def docker_image = "${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${env.DOCKER_IMAGE_TAG}"
+            k8s.auth_login("${env.GKE_DEV_NAME}", "${env.GKE_DEV_ZONE}", "${env.GKE_DEV_PROJECT}")
+            k8s.k8sdeploy("${env.K8S_DEV_FILE}", docker_image, "${env.PROD_NAMESPACE}")
+            echo "Dev GKE done successfully in Prod"
+            
+            // dockerDeploy ('prod','7761','8761').call()
         }
         }
         }
