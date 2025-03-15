@@ -32,7 +32,7 @@ class K8s {
   }  
   }
 
-  def k8sHelmChartDeploy(appName, env, helmChartPath) {
+  def HelmChartDeploy(appName, env, helmChartPath) {
    jenkins.sh """#!/bin/bash
    
    echo "*************** entering to Helm Repo ***************"
