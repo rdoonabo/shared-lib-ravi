@@ -30,4 +30,5 @@ class K8s {
     echo "deploy k8s-dev done successfully"
     """
   }  
-  }
+}
+
